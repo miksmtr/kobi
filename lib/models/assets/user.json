@@ -1,7 +1,7 @@
 {
     "model_name": "user",
     "additionals": ["copyWith", "json", "equatable"],
-    "style": "basic", 
+    "style": "json_serializable", 
     "relations": [{ "name": "user" }], 
     "properties": [
       { "name": "lastName", "type": "String?" },

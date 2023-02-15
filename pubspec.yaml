@@ -5,28 +5,34 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-
-
   #packages#
   app_ui:
     path: packages/app_ui
 
+  cloud_firestore: ^4.4.0
+  cloud_firestore_odm:  any
+  firebase_core: ^2.5.0
+  flutter:
+    sdk: flutter
+  freezed_annotation: ^2.0.0
+  json_annotation: ^4.8.0
+  meta: ^1.3.0
 
-
-  cupertino_icons: ^1.0.2
-  intl: ^0.18.0
-  equatable:
- 
 dev_dependencies:
+  flutter_lints: ^2.0.0 
+  build_runner: ^2.0.0
+  cloud_firestore_odm_generator: ^1.0.0-dev.47
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^2.0.0
+  freezed: ^2.0.0
+  http: ^0.13.5
+  integration_test:
+    sdk: flutter
+  json_serializable: ^6.3.0
+  mockito: ^5.0.0
 
 flutter:
   uses-material-design: true

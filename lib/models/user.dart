@@ -1,31 +1,30 @@
-import 'package:equatable/equatable.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_odm/annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:kobi/models/user.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
+
+
+part 'user.g.dart';
 
 /// {@template user}
 /// User description
 /// {@endtemplate}
-class User extends Equatable {
+@JsonSerializable(explicitToJson: true)
+class User  {
   /// {@macro user}
-  const User({ 
-    this.lastName,
-    required this.age,
-    required this.isHappy,
-    required this.favouriteNumber,
-    required this.nicknames,
-    required this.countriesVisited,
-    required this.friends,
+   User({ 
+  this.lastName,
+  required this.age,
+  required this.isHappy,
+  required this.favouriteNumber,
+  required this.nicknames,
+  required this.countriesVisited,
+  required this.friends,
   });
 
     /// Creates a User from Json map
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        lastName: json['lastName'] as String?,
-        age: json['age'] as int,
-        isHappy: json['isHappy'] as bool,
-        favouriteNumber: json['favouriteNumber'] as int,
-        nicknames: json['nicknames'] as List<String>,
-        countriesVisited: json['countriesVisited'] as List<String?>,
-        friends: (json['friends'] as List<dynamic>).map((dynamic e) => User.fromJson(e as Map<String, dynamic>)).toList(),
-      );
+  factory User.fromJson(Map<String, dynamic> data) => _$UserFromJson(data);
 
   /// A description for lastName
   final String? lastName;
@@ -82,13 +81,7 @@ class User extends Equatable {
       ];
 
     /// Creates a Json map from a User
-  Map<String, dynamic> toJson() => <String, dynamic>{ 
-        'lastName': lastName,
-        'age': age,
-        'isHappy': isHappy,
-        'favouriteNumber': favouriteNumber,
-        'nicknames': nicknames,
-        'countriesVisited': countriesVisited,
-        'friends': friends,
-      };
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
+@Collection<User>('users')
+final usersRef = UserCollectionReference();
