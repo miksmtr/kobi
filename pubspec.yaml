@@ -11,6 +11,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+  #packages#
+  app_ui:
+    path: packages/app_ui
+
+
+
   cupertino_icons: ^1.0.2
   intl: ^0.18.0
   equatable:

@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,15 +17,21 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.standard,
       home: Scaffold(
         appBar: AppBar(
           title: const Text("appBar"),
         ),
-        body: const Center(
-          child: Text("Body"),
+        body: ResponsiveLayoutBuilder(
+          small: (BuildContext context, Widget? widget) {
+            return const Text("small");
+          },
+          large: (BuildContext context, Widget? widget) {
+            return const Text("large");
+          },
+          medium: (BuildContext context, Widget? widget) {
+            return const Text("medium");
+          },
         ),
       ),
     );
