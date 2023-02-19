@@ -1,68 +1,54 @@
-import 'package:app_ui/app_ui.dart';
-import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'models/user.dart';
+import 'package:fluent_ui/fluent_ui.dart' hide Page;
+import 'package:flutter/foundation.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
+import 'package:system_theme/system_theme.dart';
+import 'package:url_strategy/url_strategy.dart';
+import 'package:window_manager/window_manager.dart';
 
-Future<void> main() async {
+import 'my_app_widget.dart';
+import 'theme.dart';
+
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  if (!kIsWeb &&
+      [
+        TargetPlatform.windows,
+        TargetPlatform.android,
+      ].contains(defaultTargetPlatform)) {
+    SystemTheme.accentColor.load();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: AppTheme.standard,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("appBar"),
-        ),
-        body: ResponsiveLayoutBuilder(
-            small: (BuildContext context, Widget? widget) {
-          return const Text("small");
-        }, large: (BuildContext context, Widget? widget) {
-          return FirestoreBuilder<UserQuerySnapshot>(
-              ref: usersRef,
-              builder: (context, AsyncSnapshot<UserQuerySnapshot> snapshot,
-                  Widget? child) {
-                if (snapshot.hasError) return Text('Something went wrong!');
-                if (!snapshot.hasData) return Text('Loading users...');
+  setPathUrlStrategy();
 
-                // Access the QuerySnapshot
-                UserQuerySnapshot querySnapshot = snapshot.requireData;
-
-                return ListView.builder(
-                  itemCount: querySnapshot.docs.length,
-                  itemBuilder: (context, index) {
-                    // Access the User instance
-                    User user = querySnapshot.docs[index].data;
-
-                    return Text('User name: ${user.lastName}, age ${user.age}');
-                  },
-                );
-              });
-        }),
-      ),
-    );
+  if (isDesktop) {
+    await flutter_acrylic.Window.initialize();
+    await WindowManager.instance.ensureInitialized();
+    windowManager.waitUntilReadyToShow().then((_) async {
+      await windowManager.setTitleBarStyle(
+        TitleBarStyle.hidden,
+        windowButtonVisibility: false,
+      );
+      await windowManager.setSize(const Size(755, 545));
+      await windowManager.setMinimumSize(const Size(350, 600));
+      await windowManager.center();
+      await windowManager.show();
+      await windowManager.setPreventClose(true);
+      await windowManager.setSkipTaskbar(false);
+    });
   }
+
+  runApp(const MyAppWidget());
+}
+
+
+/// Checks if the current environment is a desktop environment.
+bool get isDesktop {
+  if (kIsWeb) return false;
+  return [
+    TargetPlatform.windows,
+    TargetPlatform.linux,
+    TargetPlatform.macOS,
+  ].contains(defaultTargetPlatform);
 }

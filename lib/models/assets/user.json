@@ -2,7 +2,7 @@
     "model_name": "user",
     "additionals": ["copyWith", "json", "equatable"],
     "style": "json_serializable", 
-    "relations": [{ "name": "user" }], 
+    "relations": [{ "name": "role" }], 
     "properties": [
       { "name": "lastName", "type": "String?" },
       { "name": "age", "type": "int" },
@@ -10,6 +10,7 @@
       { "name": "favouriteNumber", "type": "int" },
       { "name": "nicknames", "type": "List<String>" },
       { "name": "countriesVisited", "type": "List<String?>" },
-      { "name": "friends", "type": "List<User>" } 
+      { "name": "roles", "type": "List<Role>" },
+      { "name": "role", "type": "Role" } 
     ]
   }
