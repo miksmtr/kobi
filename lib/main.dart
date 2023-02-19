@@ -6,8 +6,6 @@ import 'package:url_strategy/url_strategy.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'my_app_widget.dart';
-import 'theme.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
