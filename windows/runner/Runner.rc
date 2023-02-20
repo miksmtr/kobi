@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.sss" "\0"
-            VALUE "FileDescription", "kobi" "\0"
+            VALUE "FileDescription", "Kobi" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "kobi" "\0"
+            VALUE "InternalName", "Kobi" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.sss. All rights reserved." "\0"
             VALUE "OriginalFilename", "kobi.exe" "\0"
-            VALUE "ProductName", "kobi" "\0"
+            VALUE "ProductName", "Kobi" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

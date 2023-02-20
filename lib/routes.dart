@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
+import 'package:kobi/models/user.dart';
 import 'package:kobi/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
@@ -37,7 +40,38 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
     PaneItem(
       icon: const Icon(FluentIcons.home),
       title: const Text('Home'),
-      body: const Text("HomeBdy"),
+      body: FirestoreBuilder<UserQuerySnapshot>(
+          ref: UserCollectionReference(),
+          builder: (context, AsyncSnapshot<UserQuerySnapshot> snapshot,
+              Widget? child) {
+            if (snapshot.hasError) return Text('Something went wrong!');
+            if (!snapshot.hasData) return Text('Loading users...');
+            // Access the QuerySnapshot
+            UserQuerySnapshot querySnapshot = snapshot.requireData;
+            return ListView.builder(
+              itemCount: querySnapshot.docs.length,
+              itemBuilder: (context, index) {
+                // Access the User instance
+                User user = querySnapshot.docs[index].data;
+                return Container(
+                  height: 200,
+                  width: 800,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text('name: ${user.name}'),
+                          Text('lastname: ${user.lastname}'),
+                          Text('brithday: ${user.brithday.year}'),
+                          Text('profile profile url: ${user.profileImage?.url}'),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+            );
+          }),
     ),
   ];
   final List<NavigationPaneItem> footerItems = [

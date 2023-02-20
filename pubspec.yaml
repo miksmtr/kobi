@@ -25,6 +25,16 @@ dependencies:
     git:
       url: https://github.com/YehudaKremer/flutter_syntax_view.git
 
+
+  #Firebase    
+  cloud_firestore: ^4.4.2
+  firebase_core: ^2.6.1
+  firebase_storage: ^11.0.13
+  cloud_firestore_odm: ^1.0.0-dev.49
+  json_annotation: ^4.8.0
+
+  
+
   
 dev_dependencies:
   flutter_test:
@@ -32,6 +42,9 @@ dev_dependencies:
   flutter_native_splash: ^2.1.6
   flutter_lints: ^1.0.4
   flutter_launcher_icons: "^0.11.0"
+  build_runner: ^2.3.3
+  cloud_firestore_odm_generator: ^1.0.0-dev.49
+  json_serializable: ^6.6.1
 
 flutter:
   uses-material-design: true

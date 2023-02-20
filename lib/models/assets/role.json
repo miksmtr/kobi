@@ -1,9 +1,0 @@
-{
-    "model_name": "role",
-    "additionals": ["copyWith", "json", "equatable"],
-    "style": "json_serializable", 
-    "relations": [{ "name": "role" }], 
-    "properties": [
-      { "name": "name", "type": "String?" }
-    ]
-  }
