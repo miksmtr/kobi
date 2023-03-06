@@ -30,14 +30,14 @@ abstract class UserCollectionReference
     DocumentSnapshot<Map<String, Object?>> snapshot,
     SnapshotOptions? options,
   ) {
-    return _$UserFromJson(snapshot.data()!);
+    return User.fromJson(snapshot.data()!);
   }
 
   static Map<String, Object?> toFirestore(
     User value,
     SetOptions? options,
   ) {
-    return _$UserToJson(value);
+    return value.toJson();
   }
 
   @override
@@ -131,10 +131,6 @@ abstract class UserDocumentReference
     FieldValue nameFieldValue,
     String lastname,
     FieldValue lastnameFieldValue,
-    DateTime brithday,
-    FieldValue brithdayFieldValue,
-    String email,
-    FieldValue emailFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -146,10 +142,6 @@ abstract class UserDocumentReference
     FieldValue nameFieldValue,
     String lastname,
     FieldValue lastnameFieldValue,
-    DateTime brithday,
-    FieldValue brithdayFieldValue,
-    String email,
-    FieldValue emailFieldValue,
   });
 }
 
@@ -186,10 +178,6 @@ class _$UserDocumentReference
     FieldValue? nameFieldValue,
     Object? lastname = _sentinel,
     FieldValue? lastnameFieldValue,
-    Object? brithday = _sentinel,
-    FieldValue? brithdayFieldValue,
-    Object? email = _sentinel,
-    FieldValue? emailFieldValue,
   }) async {
     assert(
       name == _sentinel || nameFieldValue == null,
@@ -199,14 +187,6 @@ class _$UserDocumentReference
       lastname == _sentinel || lastnameFieldValue == null,
       "Cannot specify both lastname and lastnameFieldValue",
     );
-    assert(
-      brithday == _sentinel || brithdayFieldValue == null,
-      "Cannot specify both brithday and brithdayFieldValue",
-    );
-    assert(
-      email == _sentinel || emailFieldValue == null,
-      "Cannot specify both email and emailFieldValue",
-    );
     final json = {
       if (name != _sentinel) _$UserFieldMap['name']!: name as String,
       if (nameFieldValue != null) _$UserFieldMap['name']!: nameFieldValue,
@@ -214,12 +194,6 @@ class _$UserDocumentReference
         _$UserFieldMap['lastname']!: lastname as String,
       if (lastnameFieldValue != null)
         _$UserFieldMap['lastname']!: lastnameFieldValue,
-      if (brithday != _sentinel)
-        _$UserFieldMap['brithday']!: brithday as DateTime,
-      if (brithdayFieldValue != null)
-        _$UserFieldMap['brithday']!: brithdayFieldValue,
-      if (email != _sentinel) _$UserFieldMap['email']!: email as String,
-      if (emailFieldValue != null) _$UserFieldMap['email']!: emailFieldValue,
     };
 
     return reference.update(json);
@@ -231,10 +205,6 @@ class _$UserDocumentReference
     FieldValue? nameFieldValue,
     Object? lastname = _sentinel,
     FieldValue? lastnameFieldValue,
-    Object? brithday = _sentinel,
-    FieldValue? brithdayFieldValue,
-    Object? email = _sentinel,
-    FieldValue? emailFieldValue,
   }) {
     assert(
       name == _sentinel || nameFieldValue == null,
@@ -244,14 +214,6 @@ class _$UserDocumentReference
       lastname == _sentinel || lastnameFieldValue == null,
       "Cannot specify both lastname and lastnameFieldValue",
     );
-    assert(
-      brithday == _sentinel || brithdayFieldValue == null,
-      "Cannot specify both brithday and brithdayFieldValue",
-    );
-    assert(
-      email == _sentinel || emailFieldValue == null,
-      "Cannot specify both email and emailFieldValue",
-    );
     final json = {
       if (name != _sentinel) _$UserFieldMap['name']!: name as String,
       if (nameFieldValue != null) _$UserFieldMap['name']!: nameFieldValue,
@@ -259,12 +221,6 @@ class _$UserDocumentReference
         _$UserFieldMap['lastname']!: lastname as String,
       if (lastnameFieldValue != null)
         _$UserFieldMap['lastname']!: lastnameFieldValue,
-      if (brithday != _sentinel)
-        _$UserFieldMap['brithday']!: brithday as DateTime,
-      if (brithdayFieldValue != null)
-        _$UserFieldMap['brithday']!: brithdayFieldValue,
-      if (email != _sentinel) _$UserFieldMap['email']!: email as String,
-      if (emailFieldValue != null) _$UserFieldMap['email']!: emailFieldValue,
     };
 
     transaction.update(reference, json);
@@ -387,28 +343,6 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
-  UserQuery whereBrithday({
-    DateTime? isEqualTo,
-    DateTime? isNotEqualTo,
-    DateTime? isLessThan,
-    DateTime? isLessThanOrEqualTo,
-    DateTime? isGreaterThan,
-    DateTime? isGreaterThanOrEqualTo,
-    bool? isNull,
-    List<DateTime>? whereIn,
-    List<DateTime>? whereNotIn,
-  });
-  UserQuery whereEmail({
-    String? isEqualTo,
-    String? isNotEqualTo,
-    String? isLessThan,
-    String? isLessThanOrEqualTo,
-    String? isGreaterThan,
-    String? isGreaterThanOrEqualTo,
-    bool? isNull,
-    List<String>? whereIn,
-    List<String>? whereNotIn,
-  });
 
   UserQuery orderByDocumentId({
     bool descending = false,
@@ -435,30 +369,6 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
   });
 
   UserQuery orderByLastname({
-    bool descending = false,
-    String startAt,
-    String startAfter,
-    String endAt,
-    String endBefore,
-    UserDocumentSnapshot? startAtDocument,
-    UserDocumentSnapshot? endAtDocument,
-    UserDocumentSnapshot? endBeforeDocument,
-    UserDocumentSnapshot? startAfterDocument,
-  });
-
-  UserQuery orderByBrithday({
-    bool descending = false,
-    DateTime startAt,
-    DateTime startAfter,
-    DateTime endAt,
-    DateTime endBefore,
-    UserDocumentSnapshot? startAtDocument,
-    UserDocumentSnapshot? endAtDocument,
-    UserDocumentSnapshot? endBeforeDocument,
-    UserDocumentSnapshot? startAfterDocument,
-  });
-
-  UserQuery orderByEmail({
     bool descending = false,
     String startAt,
     String startAfter,
@@ -705,64 +615,6 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     );
   }
 
-  UserQuery whereBrithday({
-    DateTime? isEqualTo,
-    DateTime? isNotEqualTo,
-    DateTime? isLessThan,
-    DateTime? isLessThanOrEqualTo,
-    DateTime? isGreaterThan,
-    DateTime? isGreaterThanOrEqualTo,
-    bool? isNull,
-    List<DateTime>? whereIn,
-    List<DateTime>? whereNotIn,
-  }) {
-    return _$UserQuery(
-      _collection,
-      $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$UserFieldMap['brithday']!,
-        isEqualTo: isEqualTo,
-        isNotEqualTo: isNotEqualTo,
-        isLessThan: isLessThan,
-        isLessThanOrEqualTo: isLessThanOrEqualTo,
-        isGreaterThan: isGreaterThan,
-        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
-        isNull: isNull,
-        whereIn: whereIn,
-        whereNotIn: whereNotIn,
-      ),
-      $queryCursor: $queryCursor,
-    );
-  }
-
-  UserQuery whereEmail({
-    String? isEqualTo,
-    String? isNotEqualTo,
-    String? isLessThan,
-    String? isLessThanOrEqualTo,
-    String? isGreaterThan,
-    String? isGreaterThanOrEqualTo,
-    bool? isNull,
-    List<String>? whereIn,
-    List<String>? whereNotIn,
-  }) {
-    return _$UserQuery(
-      _collection,
-      $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$UserFieldMap['email']!,
-        isEqualTo: isEqualTo,
-        isNotEqualTo: isNotEqualTo,
-        isLessThan: isLessThan,
-        isLessThanOrEqualTo: isLessThanOrEqualTo,
-        isGreaterThan: isGreaterThan,
-        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
-        isNull: isNull,
-        whereIn: whereIn,
-        whereNotIn: whereNotIn,
-      ),
-      $queryCursor: $queryCursor,
-    );
-  }
-
   UserQuery orderByDocumentId({
     bool descending = false,
     Object? startAt = _sentinel,
@@ -979,150 +831,6 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     );
   }
 
-  UserQuery orderByBrithday({
-    bool descending = false,
-    Object? startAt = _sentinel,
-    Object? startAfter = _sentinel,
-    Object? endAt = _sentinel,
-    Object? endBefore = _sentinel,
-    UserDocumentSnapshot? startAtDocument,
-    UserDocumentSnapshot? endAtDocument,
-    UserDocumentSnapshot? endBeforeDocument,
-    UserDocumentSnapshot? startAfterDocument,
-  }) {
-    final query = $referenceWithoutCursor.orderBy(_$UserFieldMap['brithday']!,
-        descending: descending);
-    var queryCursor = $queryCursor;
-
-    if (startAtDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        startAt: const [],
-        startAtDocumentSnapshot: startAtDocument.snapshot,
-      );
-    }
-    if (startAfterDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        startAfter: const [],
-        startAfterDocumentSnapshot: startAfterDocument.snapshot,
-      );
-    }
-    if (endAtDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        endAt: const [],
-        endAtDocumentSnapshot: endAtDocument.snapshot,
-      );
-    }
-    if (endBeforeDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        endBefore: const [],
-        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
-      );
-    }
-
-    if (startAt != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        startAt: [...queryCursor.startAt, startAt],
-        startAtDocumentSnapshot: null,
-      );
-    }
-    if (startAfter != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        startAfter: [...queryCursor.startAfter, startAfter],
-        startAfterDocumentSnapshot: null,
-      );
-    }
-    if (endAt != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        endAt: [...queryCursor.endAt, endAt],
-        endAtDocumentSnapshot: null,
-      );
-    }
-    if (endBefore != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        endBefore: [...queryCursor.endBefore, endBefore],
-        endBeforeDocumentSnapshot: null,
-      );
-    }
-
-    return _$UserQuery(
-      _collection,
-      $referenceWithoutCursor: query,
-      $queryCursor: queryCursor,
-    );
-  }
-
-  UserQuery orderByEmail({
-    bool descending = false,
-    Object? startAt = _sentinel,
-    Object? startAfter = _sentinel,
-    Object? endAt = _sentinel,
-    Object? endBefore = _sentinel,
-    UserDocumentSnapshot? startAtDocument,
-    UserDocumentSnapshot? endAtDocument,
-    UserDocumentSnapshot? endBeforeDocument,
-    UserDocumentSnapshot? startAfterDocument,
-  }) {
-    final query = $referenceWithoutCursor.orderBy(_$UserFieldMap['email']!,
-        descending: descending);
-    var queryCursor = $queryCursor;
-
-    if (startAtDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        startAt: const [],
-        startAtDocumentSnapshot: startAtDocument.snapshot,
-      );
-    }
-    if (startAfterDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        startAfter: const [],
-        startAfterDocumentSnapshot: startAfterDocument.snapshot,
-      );
-    }
-    if (endAtDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        endAt: const [],
-        endAtDocumentSnapshot: endAtDocument.snapshot,
-      );
-    }
-    if (endBeforeDocument != null) {
-      queryCursor = queryCursor.copyWith(
-        endBefore: const [],
-        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
-      );
-    }
-
-    if (startAt != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        startAt: [...queryCursor.startAt, startAt],
-        startAtDocumentSnapshot: null,
-      );
-    }
-    if (startAfter != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        startAfter: [...queryCursor.startAfter, startAfter],
-        startAfterDocumentSnapshot: null,
-      );
-    }
-    if (endAt != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        endAt: [...queryCursor.endAt, endAt],
-        endAtDocumentSnapshot: null,
-      );
-    }
-    if (endBefore != _sentinel) {
-      queryCursor = queryCursor.copyWith(
-        endBefore: [...queryCursor.endBefore, endBefore],
-        endBeforeDocumentSnapshot: null,
-      );
-    }
-
-    return _$UserQuery(
-      _collection,
-      $referenceWithoutCursor: query,
-      $queryCursor: queryCursor,
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is _$UserQuery &&
@@ -1220,28 +928,16 @@ class UserQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot<User>
 // **************************************************************************
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      profileImage: json['profileImage'] == null
-          ? null
-          : StorageFile.fromJson(json['profileImage'] as Map<String, dynamic>),
       name: json['name'] as String,
       lastname: json['lastname'] as String,
-      brithday: const FirestoreDateTimeConverter()
-          .fromJson(json['brithday'] as Timestamp),
-      email: json['email'] as String,
     );
 
 const _$UserFieldMap = <String, String>{
   'name': 'name',
   'lastname': 'lastname',
-  'brithday': 'brithday',
-  'email': 'email',
-  'profileImage': 'profileImage',
 };
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'name': instance.name,
       'lastname': instance.lastname,
-      'brithday': const FirestoreDateTimeConverter().toJson(instance.brithday),
-      'email': instance.email,
-      'profileImage': instance.profileImage?.toJson(),
     };

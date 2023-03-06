@@ -1,37 +1,54 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Page;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
-import 'package:kobi/models/storage_file.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:window_manager/window_manager.dart';
-import 'models/user.dart';
-import 'my_app_widget.dart';
+import 'src/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 firebaseTest() async {
-  final userRef = UserCollectionReference();
-  var response = await userRef.add(User(
+  //final userRef = UserCollectionReference();
+  //FirebaseStorageRepository firebaseStorageRepository =
+  //  FirebaseStorageRepository();
+  //File file = await ImageHelper.getImage('test.png', assetsName: "assets/test");
+
+  /*  String data = await File("assets/test/test.png").readAsString();
+
+  Reference _reference = FirebaseStorage.instance.ref('test');
+  await _reference.putString("dsdsdsdsds");
+  await _reference
+      .child("path")
+      .putString(
+        data,
+        //SettableMetadata(contentType: 'image/png'),
+      )
+      .whenComplete(() async {
+    await _reference.getDownloadURL().then((value) {
+      //uploadedPhotoUrl = value;
+    });
+  }); */
+
+  //await firebaseStorageRepository.saveWithString(data, path: "test");
+  /*  var response = await userRef.add(User(
       name: "Muzaffer",
       lastname: "Bulut",
       brithday: DateTime(1994),
       email: "muzaffer652@gmail.com",
       profileImage: StorageFile(
-        url: "test_url",
-        path: "upload_path",
-      )));
-
-  print("response1: ${response.reference.id}");
-  print("response2: ${response.id}");
-  print("response:3 ${response.path}");
+          url: "test_url",
+          path: "upload_path",
+          metadata: {'newPost': 'true'}))); */
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-   // name: "dev",
   );
 
   await firebaseTest();
