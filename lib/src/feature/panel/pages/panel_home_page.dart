@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kobi/src/feature/panel/appbar/panel_app_bar.dart';
-import 'package:kobi/src/feature/panel/bottom_bar/bottom_bar.dart';
+
+import '../general_widget/general_widget.dart';
 
 class PanelHomePage extends StatefulWidget {
   const PanelHomePage({super.key});
@@ -10,12 +10,15 @@ class PanelHomePage extends StatefulWidget {
 }
 
 class _PanelHomePageState extends State<PanelHomePage> {
+  String title = "'";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: PanelAppBar(),
-      body: Center(child: Text("CONTENT")),
-      bottomNavigationBar: BottomBar(),
-    );
+    return Text("PanellHomePage");
   }
 }

@@ -1,10 +1,7 @@
-import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart' as materialApp;
+import 'package:flutter/material.dart';
 import 'package:kobi/src/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
-import 'package:fluent_ui/fluent_ui.dart' hide Page;
-import 'routing/routes.dart';
+import 'feature/panel/routing/routes.dart';
 
 class MyAppWidget extends StatelessWidget {
   const MyAppWidget({super.key});
@@ -14,8 +11,15 @@ class MyAppWidget extends StatelessWidget {
       create: (_) => AppTheme(),
       builder: (context, _) {
         final appTheme = context.watch<AppTheme>();
-        return materialApp.MaterialApp(
-          home: FluentApp(
+        return MaterialApp.router(
+          routerConfig: router,
+          themeMode: appTheme.mode,
+          locale: appTheme.locale,
+          debugShowCheckedModeBanner: false,
+          darkTheme: ThemeData.dark(),
+          title: "Kobi",
+          theme: ThemeData.light(),
+          /* ini: FluentApp(
             title: "Kobi",
             themeMode: appTheme.mode,
             debugShowCheckedModeBanner: false,
@@ -51,8 +55,8 @@ class MyAppWidget extends StatelessWidget {
               );
             },
             initialRoute: '/',
-            routes: Routes.routes,
-          ),
+            routes: router,
+          ), */
         );
       },
     );
