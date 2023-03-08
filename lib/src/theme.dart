@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 
-enum NavigationIndicators { sticky, end }
+import 'utill/shared_preferences/shared_preferences.dart';
+import 'utill/shared_preferences/shared_preferences_key.dart';
 
 class AppTheme extends ChangeNotifier {
-  ThemeMode _mode = ThemeMode.system;
-  ThemeMode get mode => _mode;
+  ThemeMode get mode => getTheme();
+  SharedPreferencesRepository pref = SharedPreferencesRepository();
 
-  TextDirection _textDirection = TextDirection.ltr;
-  TextDirection get textDirection => _textDirection;
-
-  Locale? _locale;
-  Locale? get locale => _locale;
+  TextStyle normalTextStyle =
+      const TextStyle(fontSize: 14, fontWeight: FontWeight.w300);
+  TextStyle mediumTextStyle =
+      const TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
+  TextStyle bigTextStyle =
+      const TextStyle(fontSize: 26, fontWeight: FontWeight.w800);
 
   set mode(ThemeMode mode) {
-    _mode = mode;
+    pref.save<String>(SharedPreferencesKey.theme, mode.name);
     notifyListeners();
   }
 
-  set textDirection(TextDirection direction) {
-    _textDirection = direction;
-    notifyListeners();
-  }
-
-  set locale(Locale? locale) {
-    _locale = locale;
-    notifyListeners();
+  ThemeMode getTheme() {
+    String? theme = pref.fetch<String>(SharedPreferencesKey.theme);
+    if (theme != null) {
+      return ThemeMode.values.firstWhere((element) => element.name == theme);
+    } else {
+      return ThemeMode.dark;
+    }
   }
 }

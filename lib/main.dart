@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kobi/src/utill/shared_preferences/shared_preferences.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'src/app.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,6 +42,9 @@ firebaseTest() async {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  await SharedPreferencesRepository.preferencesInit();
   setPathUrlStrategy();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

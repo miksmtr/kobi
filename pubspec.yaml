@@ -15,7 +15,8 @@ dependencies:
   go_router: ^6.2.0
   provider: ^6.0.5
   url_strategy: ^0.2.0
-
+  easy_localization: ^3.0.1
+  shared_preferences: ^2.0.18
 
   #Firebase    
   cloud_firestore: ^4.4.2
@@ -44,7 +45,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/sources/
-    - assets/test/
+    - assets/test/    
+    - assets/translations/tr.json
+    - assets/translations/en.json
+
    
 flutter_native_splash:
   color: "#000000"
