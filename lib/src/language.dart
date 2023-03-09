@@ -9,9 +9,9 @@ class AppLanguage extends ChangeNotifier {
   Locale get locale => getFromLocalStorage();
   final List<Locale> locales = [Locale("tr"), Locale("en")];
 
-  setLocale(BuildContext context, Locale locale)async {
+  setLocale(BuildContext context, Locale locale) async {
     await context.setLocale(locale);
-  await  pref.save<String>(SharedPreferencesKey.language, locale.languageCode);
+    await pref.save<String>(SharedPreferencesKey.language, locale.languageCode);
     notifyListeners();
   }
 

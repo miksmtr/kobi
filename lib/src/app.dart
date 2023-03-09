@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:kobi/src/language.dart';
 import 'package:kobi/src/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'feature/panel/routing/routes.dart';
 
 class MyAppWidget extends StatelessWidget {
@@ -26,16 +29,24 @@ class MyAppWidget extends StatelessWidget {
           builder: (context, _) {
             final appTheme = context.watch<AppTheme>();
             final appLanguage = context.watch<AppLanguage>();
+            List delegateList = context.localizationDelegates;
+            delegateList.add(FirebaseUILocalizations.delegate);
+            delegateList.forEach((element) {
+              print(element.toString());
+            });
             return MaterialApp.router(
-              routerConfig: router,
+              routerConfig: panelRoutes,
               themeMode: appTheme.mode,
-              localizationsDelegates: context.localizationDelegates,
+              theme: appTheme.themeData,
+              // localizationsDelegates: context.localizationDelegates,
+              localizationsDelegates:
+                  delegateList as Iterable<LocalizationsDelegate<dynamic>>?,
               supportedLocales: appLanguage.locales,
               locale: appLanguage.locale,
               debugShowCheckedModeBanner: false,
-              darkTheme: ThemeData.dark(),
+              darkTheme: ThemeData.dark(useMaterial3: true),
               title: "Kobi",
-              theme: ThemeData.light(),
+              //theme: ThemeData.light(),
             );
           },
         ));

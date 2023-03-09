@@ -19,14 +19,16 @@ class PanelSettingsPage extends StatefulWidget {
 class _PanelSettingsPageState extends State<PanelSettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        buildChangingThemeRadioButtons(),
-        Divider(),
-        buildChangingLanguageRadioButtons(),
-      ],
+    return GeneralWidget(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildChangingThemeRadioButtons(),
+          Divider(),
+          buildChangingLanguageRadioButtons(),
+        ],
+      ),
     );
   }
 

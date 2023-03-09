@@ -20,14 +20,25 @@ dependencies:
 
   #Firebase    
   cloud_firestore: ^4.4.2
-  firebase_core: ^2.6.1
+  firebase_core: ^2.7.1
   firebase_storage: ^11.0.14
+  firebase_ui_auth: ^1.1.16
+  firebase_auth: ^4.2.10
+  firebase_dynamic_links: ^5.0.16
   cloud_firestore_odm: ^1.0.0-dev.49
   json_annotation: ^4.8.0
+  email_validator: ^2.0.1
+  firebase_ui_localizations: ^1.2.0
+  firebase_ui_oauth: ^1.1.16
+  firebase_ui_oauth_google: ^1.0.23
 
-  
+
+  flutter_svg: ^1.1.1
   rxdart: ^0.27.7
   path_provider: ^2.0.12
+
+
+  
   
 dev_dependencies:
   flutter_test:
@@ -43,13 +54,19 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/sources/
     - assets/test/    
     - assets/translations/tr.json
     - assets/translations/en.json
 
-   
+fonts:
+  - family: SocialIcons
+    fonts:
+      - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf
+
+
 flutter_native_splash:
   color: "#000000"
   image: assets/sources/splash.jpeg

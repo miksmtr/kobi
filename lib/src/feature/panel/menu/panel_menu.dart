@@ -27,7 +27,7 @@ class PanelMenu extends StatelessWidget {
   Widget buildMenuItem(MenuItemModel itemModel) {
     _mContext!.read;
     return MenuItem(itemModel.icon, itemModel.text ?? '', () {
-      _mContext!.go(itemModel.route);
+      _mContext!.pushReplacement(itemModel.route);
     });
   }
 }

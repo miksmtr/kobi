@@ -19,6 +19,6 @@ class _PanelHomePageState extends State<PanelHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("PanellHomePage");
+    return GeneralWidget(body: Text("PanellHomePage"));
   }
 }
