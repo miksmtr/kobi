@@ -54,12 +54,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true
   assets:
     - assets/sources/
     - assets/test/    
-    - assets/translations/tr.json
-    - assets/translations/en.json
+    - assets/translations/
+  #- assets/translations/en.json
 
 fonts:
   - family: SocialIcons

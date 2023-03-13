@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:kobi/src/language.dart';
 import 'package:kobi/src/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'feature/panel/routing/routes.dart';
+import 'feature/authentication/pages/auth_provider.dart';
+import 'routing/routes.dart';
 
 class MyAppWidget extends StatelessWidget {
   const MyAppWidget({super.key});
@@ -14,9 +13,7 @@ class MyAppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return EasyLocalization(
         supportedLocales: AppLanguage().locales,
-        path:
-            'assets/translations', // <-- change the path of the translation files
-        // fallbackLocale: AppLanguage().locale,
+        path: 'assets/translations',
         child: MultiProvider(
           providers: [
             ChangeNotifierProvider<AppTheme>(
@@ -24,6 +21,9 @@ class MyAppWidget extends StatelessWidget {
             ),
             ChangeNotifierProvider<AppLanguage>(
               create: (_) => AppLanguage(),
+            ),
+            ChangeNotifierProvider<CAuthProvider>(
+              create: (_) => CAuthProvider(),
             ),
           ],
           builder: (context, _) {
@@ -35,7 +35,7 @@ class MyAppWidget extends StatelessWidget {
               print(element.toString());
             });
             return MaterialApp.router(
-              routerConfig: panelRoutes,
+              routerConfig: routes,
               themeMode: appTheme.mode,
               theme: appTheme.themeData,
               // localizationsDelegates: context.localizationDelegates,

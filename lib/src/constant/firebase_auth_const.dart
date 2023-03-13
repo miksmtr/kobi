@@ -5,8 +5,8 @@ final actionCodeSettings = ActionCodeSettings(
   url: 'https://flutterfire-e2e-tests.firebaseapp.com',
   handleCodeInApp: true,
   androidMinimumVersion: '1',
-  androidPackageName: 'io.flutter.plugins.firebase_ui.firebase_ui_example',
-  iOSBundleId: 'io.flutter.plugins.fireabaseUiExample',
+  androidPackageName: 'io.flutter.plugins.com.spacesoftwareservices.kobi',
+  iOSBundleId: 'io.flutter.plugins.com.spacesoftwareservices.kobi',
 );
 final emailLinkProviderConfig = EmailLinkAuthProvider(
   actionCodeSettings: actionCodeSettings,

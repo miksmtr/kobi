@@ -35,11 +35,25 @@ class $AssetsTestGen {
   List<AssetGenImage> get values => [sample, test];
 }
 
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en.json
+  String get en => 'assets/translations/en.json';
+
+  /// File path: assets/translations/tr.json
+  String get tr => 'assets/translations/tr.json';
+
+  /// List of all assets
+  List<String> get values => [en, tr];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsSourcesGen sources = $AssetsSourcesGen();
   static const $AssetsTestGen test = $AssetsTestGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

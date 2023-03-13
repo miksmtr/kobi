@@ -4,6 +4,10 @@
     "language_select_title":"Dil seç",
     "theme_select_title":"Tema seç",
     "light":"Açık",
-    "dark":"Koyu"
+    "dark":"Koyu",
+    "auth":{
+        "title":"Hemen kayıt ol",
+        "bottom_desc":"kayıt olunca herşeyi kabul ediyonuz"
+    }
 
 }

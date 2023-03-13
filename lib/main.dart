@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
@@ -52,6 +54,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseFirestore.instance.settings = const Settings(
+    cacheSizeBytes: 100 * 1024 * 1024,
+    persistenceEnabled: true,
+  );
+
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     emailLinkProviderConfig,
@@ -63,7 +70,7 @@ void main() async {
 }
 
 /// Checks if the current environment is a desktop environment.
-bool get isDesktop {
+bool get kIsWebisDesktop {
   if (kIsWeb) return false;
   return [
     TargetPlatform.windows,

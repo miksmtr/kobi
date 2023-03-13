@@ -18,8 +18,8 @@ class EmailVerifiy extends StatelessWidget {
         EmailVerifiedAction(() {
           context.pushReplacement('/panel');
         }),
-        AuthCancelledAction((context) {
-          FirebaseUIAuth.signOut(context: context);
+        AuthCancelledAction((context) async{
+          await FirebaseUIAuth.signOut(context: context);
           context.pushReplacement('/panel');
         }),
       ],
